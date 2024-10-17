@@ -56,9 +56,13 @@ export const signUp = async (req: Request, res: Response) => {
 };
 
 export const currentUser = async (req: Request, res: Response) => {
-  const { id } = req.body;
-  const findUser = await User.findById(id);
-  res.status(200).json({ user: findUser, message: "Success" });
+  const { id } = req.user;
+  try {
+    const findUser = await User.findById(id);
+    res.status(200).json({ user: findUser, message: "Success" });
+  } catch (error) {
+    console.log("error", error);
+  }
 };
 
 export const resetPass = async (req: Request, res: Response) => {

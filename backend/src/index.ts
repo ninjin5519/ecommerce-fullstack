@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import { generateHtmlTemplate } from "./util/generateHtmlTemplate";
 import productRouter from "./routes/product-route";
 import categoryRouter from "./routes/category-route";
+import cartRouter from "./routes/cart-route";
 dotenv.config();
 const PORT: string = process.env.PORT || "";
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/category", categoryRouter);
+app.use("/api/v1/carts", cartRouter);
 
 app.get("/", async (req: Request, res: Response) => {
   const randomOtp = Math.floor(Math.random() * 10000)
